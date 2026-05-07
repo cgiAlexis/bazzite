@@ -1,3 +1,4 @@
+#################################################
 # Reset the Steam folder back to a fresh state
 #[group("gaming")]
 #fix-reset-steam:
@@ -25,6 +26,8 @@
 #    sleep 1
 #    bazzite-steam --disable-firstrun &
 #    exit 0
+##################################################
+
 
 # Toggle systemd-triggered ProtonPlus auto update (https://github.com/Vysp3r/ProtonPlus)
 [group("gaming")]
@@ -32,6 +35,8 @@ toggle-proton-plus-auto-update
   !/usr/bin/bash
   source /usr/lib/ujust/ujust.sh
 
+
+  ### Checking this way is dumb. Check for a service name in --user and --system instead.
   check_pp_update_user() {
     if  [[ -f "/var/home/bazzite/.config/user/proton-plus-auto-update.service" ]]; then
       echo "enabled"
@@ -49,5 +54,22 @@ echo -e "This script sets the ProtonPlus flatpak to automatically run at startup
 echo -e "It will update all configuration shims that have the 'Latest' qualifier."
 echo -e "If you want, edit the created template at `/var/home/bazzite/.config/user/proton-plus-auto-update.service`."
 
-enable_pp_update() [
-  
+enable_pp_update_user() [
+]
+### Define how to enable pp update for a user
+## Confirm PP is installed
+## If not, install PP via flatpak as a standard user
+## Create a .service file in the correct directory
+## Place the defined contents into the system file
+## Enable the system item, trigger it once as a onetime
+
+### Define how to disable pp update for a user
+
+### Define how to enable pp update system-wide for all users
+
+### Define how to disable pp update system-wide for all users
+
+#### Is it too much to make a TLI for managing PP?
+### Define how to check what is installed
+### Define how to list what is installed and not installed
+### Enable the user to install and remove PP tools via ujust TLI
